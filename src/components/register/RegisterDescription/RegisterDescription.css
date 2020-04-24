@@ -1,0 +1,26 @@
+.register-title {
+  margin-bottom: 1rem;
+  font-size: 32px;
+  font-weight: bold;
+  color: #f4881c
+}
+
+.register-description {
+  margin-bottom: 1rem;
+  font-size: 18px;
+  color: #737380;
+  line-height: 32px;
+}
+
+.back-button {
+  color: #5aacdc;
+  font-size: 18px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.back-button:hover {
+  opacity: 0.8;
+  color: #5aacdc;
+}

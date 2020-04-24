@@ -1,10 +1,11 @@
 import React from 'react';
 import Routes from './routes/routes';
+import 'bulma/css/bulma.css';
 import './Global.css';
 
 function App() {
   return (
-    <div>
+    <div className="global-div">
       <Routes />
     </div>
   );

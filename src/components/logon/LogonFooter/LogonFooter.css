@@ -1,0 +1,9 @@
+.container > .footer-link {
+  color: #5aacdc;
+  transition: filter 0.2s;
+}
+
+.container > .footer-link:hover {
+  color: #5aacdc;
+  filter: brightness(85%);
+}

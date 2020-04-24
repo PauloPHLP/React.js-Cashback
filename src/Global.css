@@ -1,0 +1,23 @@
+.primary-button {
+  border: none;
+  color: #ffffff;
+  background-color: #d5de23;
+  transition: filter 0.2s;
+}
+
+.primary-button:hover {
+  filter: brightness(97%);
+  color: #ffffff;
+}
+
+.secondary-button {
+  border: none;
+  color: #ffffff;
+  background-color: #f4881c;
+  transition: filter 0.2s;
+}
+
+.secondary-button:hover {
+  filter: brightness(97%);
+  color: #ffffff;
+}

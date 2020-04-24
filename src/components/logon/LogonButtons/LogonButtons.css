@@ -1,0 +1,20 @@
+.logon-buttons {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+a.register-link {
+  margin-top: 1rem;
+  color: #5aacdc;
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+a.register-link:hover {
+  opacity: 0.8;
+  color: #5aacdc;
+}
