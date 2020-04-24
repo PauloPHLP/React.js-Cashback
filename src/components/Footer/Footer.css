@@ -1,0 +1,15 @@
+a.add-sale-btn {
+  border-top-left-radius: 8px;
+}
+
+a.log-off-btn {
+  border-top-right-radius: 8px;
+}
+
+.hero-foot {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}

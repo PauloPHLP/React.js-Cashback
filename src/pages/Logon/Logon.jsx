@@ -1,7 +1,7 @@
 import React from 'react';
-import LogonLogoImage from '../../components/logon/LogonLogoImage/LogonLogoImage';
-import LogonForm from '../../components/logon/LogonForm/LogonForm';
-import LogonFooter from '../../components/logon/LogonFooter/LogonFooter';
+import LogonLogoImage from '../../components/Logon/LogonLogoImage/LogonLogoImage';
+import LogonForm from '../../components/Logon/LogonForm/LogonForm';
+import LogonFooter from '../../components/Logon/LogonFooter/LogonFooter';
 import './Logon.css';
 
 function Logon() {

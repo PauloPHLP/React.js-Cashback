@@ -1,0 +1,28 @@
+.sale-item {
+  border-radius: 8px;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+
+.item-title, .item-value {
+  margin-left: 1rem;
+  margin-right: 9rem;
+}
+
+.item-title {
+  color: #000000;
+  font-weight: bold;
+}
+
+.green-status {
+  color: #d5de23;
+}
+
+.blue-status {
+  color: #5aacdc;
+}
+
+.red-status {
+  color: #ff0000;
+}

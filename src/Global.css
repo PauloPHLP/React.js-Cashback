@@ -1,3 +1,10 @@
+body {
+  background-image: url('./assets/images/background.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .primary-button {
   border: none;
   color: #ffffff;
@@ -5,9 +12,10 @@
   transition: filter 0.2s;
 }
 
-.primary-button:hover {
-  filter: brightness(97%);
+.primary-button:hover, .primary-button:focus {
+  filter: brightness(95%);
   color: #ffffff;
+  outline: none;
 }
 
 .secondary-button {
@@ -17,7 +25,34 @@
   transition: filter 0.2s;
 }
 
-.secondary-button:hover {
-  filter: brightness(97%);
+.secondary-button:hover, .secondary-button:focus {
+  filter: brightness(95%);
   color: #ffffff;
+  outline: none;
+}
+
+.tertiary-button {
+  border: none;
+  color: #ffffff;
+  background-color: #5aacdc;
+  transition: filter 0.2s;
+}
+
+.tertiary-button:hover, .tertiary-button:focus {
+  filter: brightness(95%);
+  color: #ffffff;
+  outline: none;
+}
+
+.delete-button {
+  border: none;
+  color: #ffffff;
+  background-color: #ff0000;
+  transition: filter 0.2s;
+}
+
+.delete-button:hover, .delete-button:focus {
+  filter: brightness(95%);
+  color: #ffffff;
+  outline: none;
 }

@@ -1,0 +1,14 @@
+.form-container.columns.is-vcentered.form-elements {
+  margin-bottom: 1rem;
+}
+
+.form-container {
+  background-color: #ffffff;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding-bottom: 1rem;
+}
+
+.form-elements {
+  padding: 0.5rem; 
+}
