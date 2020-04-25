@@ -5,6 +5,11 @@ body {
   background-size: cover;
 }
 
+::placeholder {
+  color: #dbdbdb;
+  opacity: 1;
+}
+
 .primary-button {
   border: none;
   color: #ffffff;

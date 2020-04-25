@@ -1,0 +1,22 @@
+input.numeric-input, .react-numeric-input {
+  height: 3.75rem;
+  width: 100%;
+}
+
+.currency-input, .currency-input-disabled {
+  width: 100%;
+  background-color: white;
+  border: 1px solid;
+  border-color: #dbdbdb;
+  border-radius: 4px;
+  color: #363636;
+  padding-bottom: calc(0.5em - 1px);
+  padding-left: calc(0.75em - 1px);
+  padding-right: calc(0.75em - 1px);
+  padding-top: calc(0.5em - 1px);
+  font-size: 1rem;
+}
+
+.currency-input-disabled:hover {
+  cursor: not-allowed;
+}

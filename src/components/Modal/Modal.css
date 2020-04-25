@@ -1,0 +1,37 @@
+p.modal-card-title {
+  color: #f4881c;
+  transition: filter 0.2s;
+}
+
+p.modal-card-title:hover {
+  color: #f4881c;
+}
+
+.modal {
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+.modal-card-head.modal-head {
+  border: none;
+  background-color: #ffffff;
+}
+
+.delete.modal-close-button {
+  background-color: #5aacdc;
+  transition: filter 0.2s;
+}
+
+.delete.modal-close-button:hover {
+  background-color: #5aacdc;
+  filter: brightness(95%);
+}
+
+.modal-card-foot.modal-foot {
+  border: none;
+  background-color: #ffffff;
+}
+
+.is-fullwidth.delete-button-modal {
+  margin-top: 0rem;
+}

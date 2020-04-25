@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 import MainFormFull from '../../components/MainForm/MainFormFull/MainFormFull';
+import SalesForm from '../../components/Sales/SalesForm/SalesForm';
 import './SaleManagement.css';
 
 const DESCRIPTION = {
@@ -13,57 +14,10 @@ const DESCRIPTION = {
 };
 
 function SaleManagement() {
-  const form = () => {
-    return (
-      <div>
-        <div className="field">
-          <div className="control form-item">
-            <input className="input" type="text" placeholder="Código" />
-          </div>
-        </div>
-        <div className="field">
-          <div className="control form-item">
-            <input className="input" type="text" placeholder="Valor" />
-          </div>
-        </div>
-        <div className="field">
-          <div className="control form-item">
-            <input className="input" type="text" placeholder="Data" />
-          </div>
-        </div>
-        <div className="field">
-          <div className="control form-item">
-            <input
-              className="input"
-              type="text"
-              placeholder="Porcentagem de cashback"
-            />
-          </div>
-        </div>
-        <div className="field">
-          <div className="control form-item">
-            <input
-              className="input"
-              type="text"
-              placeholder="Valor do cashback"
-              disabled
-            />
-          </div>
-        </div>
-        <button
-          type="submit"
-          className="button primary-button is-large is-fullwidth"
-        >
-          Adicionar venda
-        </button>
-      </div>
-    );
-  };
-
   return (
     <section className="hero is-fullheight">
       <Navbar />
-      <MainFormFull description={DESCRIPTION} form={form} />
+      <MainFormFull description={DESCRIPTION} form={SalesForm} />
       <Footer />
     </section>
   );

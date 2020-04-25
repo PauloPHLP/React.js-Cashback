@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '../../components/Navbar/Navbar';
-import SalesList from '../../components/SalesList/SalesList/SalesList';
+import SalesList from '../../components/Sales/SalesList/SalesList';
 import Footer from '../../components/Footer/Footer';
 import './Sales.css';
 
