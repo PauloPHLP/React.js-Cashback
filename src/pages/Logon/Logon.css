@@ -1,0 +1,6 @@
+.hero.is-fullheight {
+  background-image: url('../../assets/images/background.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
