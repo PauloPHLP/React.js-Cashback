@@ -12,7 +12,9 @@ function Navbar() {
             <Link to="/sales" className="navbar-item">
               <img src={logo} alt="O Boticário logo." />
             </Link>
-            <p className="greeting-message">Seja bem-vindx, Paulo!</p>
+            <p className="greeting-message">
+              Seja bem-vindx, {localStorage.getItem('loggedUser')}!
+            </p>
           </div>
         </div>
       </header>

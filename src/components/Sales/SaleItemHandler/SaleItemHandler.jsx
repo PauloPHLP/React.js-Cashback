@@ -1,8 +1,8 @@
 import React from 'react';
 import Modal, { openModal } from '../../Modal/Modal';
-import './SaleItemButtons.css';
+import './SaleItemHandler.css';
 
-function SaleItemButtons() {
+function SaleItemHandler({ saleCode }) {
   const handleDelete = () => {
     openModal();
   };
@@ -14,6 +14,7 @@ function SaleItemButtons() {
         message="Você tem certeza que deseja deletar esta venda?"
         confirmButton="Sim"
         cancelButton="Não"
+        saleCode={saleCode}
       />
       <div className="columns handler-buttons">
         <div className="column is-half">
@@ -38,4 +39,4 @@ function SaleItemButtons() {
   );
 }
 
-export default SaleItemButtons;
+export default SaleItemHandler;

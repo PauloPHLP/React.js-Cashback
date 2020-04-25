@@ -1,0 +1,8 @@
+.invalid {
+  margin-top: 0.5rem;
+  color: #ff0000;
+}
+
+.valid {
+  display: none;
+}

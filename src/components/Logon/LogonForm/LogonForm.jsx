@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faCheck, faLock } from '@fortawesome/free-solid-svg-icons';
-import LogonButtons from '../LogonButtons/LogonButtons';
+import LogonHandler from '../LogonHandler/LogonHandler';
 import './LogonForm.css';
 
 function LogonForm() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <>
       <div className="columns is-centered">
@@ -15,6 +18,8 @@ function LogonForm() {
                 className="input logon-input"
                 type="email"
                 placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <span className="icon is-small is-left">
                 <FontAwesomeIcon
@@ -33,6 +38,8 @@ function LogonForm() {
                 className="input logon-input"
                 type="password"
                 placeholder="Senha"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <span className="icon is-small is-left">
                 <FontAwesomeIcon icon={faLock} style={{ color: '#5aacdc' }} />
@@ -41,7 +48,7 @@ function LogonForm() {
           </div>
         </div>
       </div>
-      <LogonButtons />
+      <LogonHandler loginInfo={{ email, password }} />
     </>
   );
 }

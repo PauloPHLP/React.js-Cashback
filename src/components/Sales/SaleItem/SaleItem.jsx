@@ -1,5 +1,5 @@
 import React from 'react';
-import SaleItemButtons from '../SaleItemButtons/SaleItemButtons';
+import SaleItemHandler from '../SaleItemHandler/SaleItemHandler';
 import './SaleItem.css';
 
 // Used to convert the keys of the sale object to the correct card titles.
@@ -45,7 +45,7 @@ function SaleItem({ sale }) {
       <div className="sale-item">
         <div className="columns is-multiline">
           {Object.keys(sale).map((key) => columnItem(key))}
-          <SaleItemButtons />
+          <SaleItemHandler saleCode={sale.code} />
         </div>
       </div>
     </div>

@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import './Footer.css';
 
 function Footer() {
+  const handleLogOff = () => {
+    localStorage.removeItem('loggedUser');
+  };
+
   return (
     <div className="hero-foot">
       <nav className="tabs is-fullwidth">
@@ -31,6 +35,7 @@ function Footer() {
                 to="/"
                 className="secondary-button log-off-btn"
                 style={{ color: '#fff' }}
+                onClick={() => handleLogOff()}
               >
                 Sair
               </Link>

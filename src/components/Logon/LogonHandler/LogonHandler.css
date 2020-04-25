@@ -18,3 +18,12 @@ a.register-link:hover {
   opacity: 0.8;
   color: #5aacdc;
 }
+
+.error-message-show {
+  color: #ff0000;
+  margin-bottom: 0.7rem;
+}
+
+.error-message-hidden {
+  display: none;
+}

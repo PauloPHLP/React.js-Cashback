@@ -11,7 +11,7 @@ function SalesList({ salesList }) {
     setTimeout(() => {
       setIsLoaded(true);
     }, 500);
-  }, []);
+  }, [salesList, isLoaded]);
 
   return (
     <div className="container">
