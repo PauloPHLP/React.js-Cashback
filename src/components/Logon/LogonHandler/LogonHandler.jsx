@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { getUsers, updateUserData } from '../../../redux/actions/usersActions';
 import { logonHandlerPropType, defaultProps } from './types';
+import Spinner from '../../Spinner/Spinner';
 import api from '../../../services/api';
 import './LogonHandler.css';
 
@@ -25,13 +26,14 @@ const mapDispatchToProps = (dispatch) => {
 
 function LogonHandler({ users, loginInfo, updateUserData }) {
   const [errorField, setSetErrorField] = useState('error-message-hidden');
+  const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
 
   const finishLogin = (user) => {
     setSetErrorField('error-message-hidden');
     localStorage.setItem('loggedUser', user.name);
     localStorage.setItem('loggedUserEmail', user.email);
-    history.push('/vendas');
+    history.push('/compras');
   };
 
   async function updateUserCredits(user) {
@@ -64,21 +66,27 @@ function LogonHandler({ users, loginInfo, updateUserData }) {
         user.email === loginInfo.email && user.password === loginInfo.password
     );
 
-    if (filteredUser.length) updateUserCredits(filteredUser[0]);
-    else setSetErrorField('error-message-show');
+    if (filteredUser.length) {
+      setIsLoading(true);
+      updateUserCredits(filteredUser[0]);
+    } else setSetErrorField('error-message-show');
   };
 
   return (
     <div className="columns is-centered buttons">
       <div className="column is-full-mobile is-full-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd logon-buttons">
-        <p className={errorField}>Por favor verifique seus dados!</p>
-        <button
-          type="submit"
-          className="button primary-button is-medium is-fullwidth submit-button"
-          onClick={(e) => handleLogin(e)}
-        >
-          Login
-        </button>
+        <p className={errorField}>Por favor, verifique seus dados!</p>
+        {!isLoading ? (
+          <button
+            type="submit"
+            className="button primary-button is-medium is-fullwidth submit-button"
+            onClick={(e) => handleLogin(e)}
+          >
+            Login
+          </button>
+        ) : (
+          <Spinner />
+        )}
         <Link to="/registrar" className="register-link">
           Não tenho uma conta &nbsp;
           <FontAwesomeIcon icon={faArrowRight} style={{ color: '#5aacdc' }} />

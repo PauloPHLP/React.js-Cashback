@@ -20,7 +20,7 @@ function SalesList({ salesList }) {
         <div className="container">
           <div className="columns is-multiline">
             <div className="column is-full has-text-centered">
-              <h1 className="sales-page-title">Suas vendas</h1>
+              <h1 className="sales-page-title">Suas compras</h1>
             </div>
             {salesList && isLoaded ? (
               salesList.map((sale) => <SaleItem key={sale.code} sale={sale} />)

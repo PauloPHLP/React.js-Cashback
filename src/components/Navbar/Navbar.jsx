@@ -9,7 +9,7 @@ function Navbar() {
       <header className="navbar">
         <div className="container">
           <div className="navbar-brand">
-            <Link to="/sales" className="navbar-item">
+            <Link to="/compras" className="navbar-item">
               <img src={logo} alt="O Boticário logo." />
             </Link>
             <p className="greeting-message">

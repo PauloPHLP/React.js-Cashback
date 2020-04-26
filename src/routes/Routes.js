@@ -25,7 +25,7 @@ function Routes() {
             path="/registrar"
             component={RegisterUser}
           />
-          <PrivateRoute path="/vendas" component={Sales} />
+          <PrivateRoute path="/compras" component={Sales} />
           <PrivateRoute path="/gerenciar" component={SaleManagement} />
           <PublicRoute
             path="*"

@@ -111,7 +111,7 @@ function SalesForm({
       });
 
       updateUserCredits();
-      history.push('/');
+      history.push('/compras');
     }
   };
 
@@ -129,7 +129,7 @@ function SalesForm({
     });
 
     updateUserCreditsEditMode();
-    history.push('/');
+    history.push('/compras');
   };
 
   // Checking if is edit mode.

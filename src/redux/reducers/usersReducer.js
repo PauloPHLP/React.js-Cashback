@@ -3,10 +3,10 @@ import { ADD_USER, FETCH_USERS, UPDATE_USER } from '../actions/actionTypes';
 const initialState = {
   users: [
     {
-      name: 'Paulo Lima',
-      cpf: '111.625.249-01',
-      email: 'p.pereira@cinq.com.br',
-      password: 'phlp@1212',
+      name: 'Admin',
+      cpf: '111.111.111-11',
+      email: 'admin@admin.com',
+      password: '1234',
       credits: 0
     }
   ]

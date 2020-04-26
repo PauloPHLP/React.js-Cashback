@@ -6,7 +6,7 @@ import './SaleItem.css';
 // Used to convert the keys of the sale object to the correct card titles.
 const DEFAULT_TITLES = {
   id: 'ID',
-  code: 'Código de venda',
+  code: 'Código da compra',
   value: 'Valor',
   date: 'Data',
   cashbackPercentage: 'Porcentagem de cashback',

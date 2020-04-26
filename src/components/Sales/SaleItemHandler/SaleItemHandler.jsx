@@ -64,8 +64,8 @@ function SaleItemHandler({
     <div className="column is-full handler-buttons-column">
       <Modal
         modalId={selectedSale.code}
-        title={`Deletar venda ${selectedSale.code}?`}
-        message="Você tem certeza que deseja deletar esta venda?"
+        title={`Deletar compra ${selectedSale.code}?`}
+        message="Você tem certeza que deseja deletar esta compra?"
         confirmButton="Sim"
         cancelButton="Não"
         confirmAction={() => handleDelete()}

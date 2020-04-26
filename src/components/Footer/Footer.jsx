@@ -36,12 +36,12 @@ function Footer({ users }) {
                 className="primary-button add-sale-btn"
                 style={{ color: '#fff' }}
               >
-                Adicionar venda
+                Adicionar compra
               </Link>
             </li>
             <li>
               <Link
-                to="/vendas"
+                to="/compras"
                 className="tertiary-button"
                 style={{ color: '#fff' }}
               >

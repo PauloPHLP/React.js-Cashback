@@ -6,11 +6,11 @@ import SalesForm from '../../components/Sales/SalesForm/SalesForm';
 import './SaleManagement.css';
 
 const DESCRIPTION = {
-  title: 'Gerenciar venda',
+  title: 'Gerenciar compra',
   description:
-    'Coloque as informações da venda para ter acesso ao seu cashback.',
-  goBackMessage: 'Voltar para lista de vendas',
-  goBackRoute: '/vendas'
+    'Coloque as informações da compra para ter acesso ao seu cashback.',
+  goBackMessage: 'Voltar para lista de compras',
+  goBackRoute: '/compras'
 };
 
 function SaleManagement() {
