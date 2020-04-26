@@ -17,7 +17,7 @@ function Footer({ users }) {
     const userEmail = localStorage.getItem('loggedUserEmail');
     const foundedUser = users.filter((user) => user.email === userEmail);
 
-    setCurrentCredit(foundedUser[0].credits || 0);
+    if (foundedUser.length) setCurrentCredit(foundedUser[0].credits);
   }, [users]);
 
   const handleLogOff = () => {

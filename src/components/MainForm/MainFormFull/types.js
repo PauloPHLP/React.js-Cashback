@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 
 export const defaultProps = {
-  description: ''
+  description: {}
 };
 
 export const mainFormFullPropType = {
-  form: PropTypes.elementType.isRequired
+  form: PropTypes.elementType
 };

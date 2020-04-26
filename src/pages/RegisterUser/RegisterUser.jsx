@@ -11,7 +11,11 @@ const DESCRIPTION = {
 };
 
 function RegisterUser() {
-  return <MainFormFull description={DESCRIPTION} form={RegisterForm} />;
+  return (
+    <div className="register-container">
+      <MainFormFull description={DESCRIPTION} form={RegisterForm} />
+    </div>
+  );
 }
 
 export default RegisterUser;

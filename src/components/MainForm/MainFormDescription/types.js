@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 export const defaultProps = {
-  description: ''
+  description: {}
 };
 
 export const mainFormDescriptionPropType = {

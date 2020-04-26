@@ -12,7 +12,7 @@ function MainFormDescription({ description }) {
       <img src={icon} alt="O Boticário icon" className="logo-icon" />
       <h1 className="form-title">{description.title}</h1>
       <p className="form-description">{description.description}</p>
-      <Link to={description.goBackRoute} className="back-button">
+      <Link to={description.goBackRoute || '/'} className="back-button">
         <FontAwesomeIcon icon={faArrowLeft} style={{ color: '#5aacdc' }} />
         &nbsp; {description.goBackMessage}
       </Link>

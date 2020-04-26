@@ -56,7 +56,7 @@ function SaleItem({ sale }) {
   }, [sale]);
 
   return (
-    <div className="column is-full-mobile is-full-tablet is-half-desktop is-one-third-widescreen  is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
+    <div className="column is-full-mobile is-full-tablet is-half-desktop is-one-third-widescreen is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
       <div className="sale-item">
         <div className="columns is-multiline">
           {Object.keys(sale).map((key) => columnItem(key))}
