@@ -2,9 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import InputMask from 'react-input-mask';
+import nextId from 'react-id-generator';
 import NumericInput from 'react-numeric-input';
 import NumberFormat from 'react-number-format';
-import { createSale } from '../../../redux/actions/salesActions';
+import {
+  createSale,
+  updateSaleData
+} from '../../../redux/actions/salesActions';
 import { updateUserData } from '../../../redux/actions/usersActions';
 import './SalesForm.css';
 
@@ -18,36 +22,59 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     createSale: (args) => dispatch(createSale(args)),
+    updateSaleData: (args) => dispatch(updateSaleData(args)),
     updateUserData: (args) => dispatch(updateUserData(args))
   };
 };
 
-function SalesForm({ sales, users, createSale, updateUserData }) {
+function SalesForm({
+  sales,
+  users,
+  createSale,
+  updateSaleData,
+  updateUserData
+}) {
+  const [id, setId] = useState();
   const [code, setCode] = useState();
   const [value, setValue] = useState();
   const [date, setDate] = useState();
   const [cashbackPercentage, setCashbackPercentage] = useState(0);
+  const [initialCashbackValue, setInitialCashbackValue] = useState(null);
   const [cashbackValue, setCashbackValue] = useState(0);
+  const [status, setStatus] = useState(null);
+  const [buttonText, setButtonText] = useState('Adicionar venda');
   const history = useHistory();
 
-  useEffect(() => {
-    if (value && cashbackPercentage) {
-      // Removing all special characters and characters from the value.
-      const newValue = value.replace(/[^\w\s]/gi, '').replace('R', '');
+  const setEditMode = (sale) => {
+    setId(sale.id);
+    setCode(sale.code);
+    setValue(sale.value.toString());
+    setDate(sale.date);
+    setCashbackPercentage(sale.cashbackPercentage);
+    setInitialCashbackValue(sale.cashbackValue);
+    setCashbackValue(sale.cashbackValue);
+    setStatus(sale.status);
+    setButtonText('Salvar alterações');
+  };
 
-      setCashbackValue(
-        (parseFloat(newValue) * (cashbackPercentage / 100)).toFixed(2)
-      );
-    } else if (!value || cashbackPercentage === 0 || !cashbackPercentage)
-      setCashbackValue(0);
-  }, [value, cashbackPercentage]);
-
-  const updateUserCredits = () => {
-    const filteredUser = users.filter(
+  const getCurrentUser = () => {
+    return users.filter(
       (user) => user.email === localStorage.getItem('loggedUserEmail')
     )[0];
+  };
+
+  const updateUserCredits = () => {
+    const filteredUser = getCurrentUser();
 
     filteredUser.credits += parseFloat(cashbackValue);
+
+    updateUserData(filteredUser);
+  };
+
+  const updateUserCreditsEditMode = () => {
+    const filteredUser = getCurrentUser();
+    filteredUser.credits =
+      filteredUser.credits - initialCashbackValue + parseFloat(cashbackValue);
 
     updateUserData(filteredUser);
   };
@@ -72,6 +99,7 @@ function SalesForm({ sales, users, createSale, updateUserData }) {
 
     if (!validateCode()) {
       createSale({
+        id: nextId(),
         code,
         value,
         date,
@@ -85,8 +113,43 @@ function SalesForm({ sales, users, createSale, updateUserData }) {
     }
   };
 
+  const handleEdit = (e) => {
+    e.preventDefault();
+
+    updateSaleData({
+      id,
+      code,
+      value,
+      date,
+      cashbackPercentage,
+      cashbackValue,
+      status
+    });
+
+    updateUserCreditsEditMode();
+    history.push('/');
+  };
+
+  // Checking if is edit mode.
+  useEffect(() => {
+    if (history.location.state) setEditMode(history.location.state.toEdit);
+  }, []);
+
+  // Formating and calculating cashback value and percentage every time that the values are updated.
+  useEffect(() => {
+    if (value && cashbackPercentage) {
+      // Removing all special characters and characters from the value.
+      const newValue = value.replace(/[^\w\s]/gi, '').replace('R', '');
+
+      setCashbackValue(
+        (parseFloat(newValue) * (cashbackPercentage / 100)).toFixed(2)
+      );
+    } else if (!value || cashbackPercentage === 0 || !cashbackPercentage)
+      setCashbackValue(0);
+  }, [value, cashbackPercentage, cashbackValue]);
+
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
+    <form onSubmit={(e) => (status ? handleEdit(e) : handleSubmit(e))}>
       <div className="field">
         <div className="control form-item">
           <input
@@ -95,6 +158,7 @@ function SalesForm({ sales, users, createSale, updateUserData }) {
             placeholder="Código"
             value={code}
             onChange={(e) => setCode(e.target.value)}
+            required
           />
         </div>
         <p id="code" className="valid">
@@ -110,6 +174,7 @@ function SalesForm({ sales, users, createSale, updateUserData }) {
             thousandSeparator
             value={value}
             onChange={(e) => setValue(e.target.value)}
+            required
           />
         </div>
       </div>
@@ -121,6 +186,7 @@ function SalesForm({ sales, users, createSale, updateUserData }) {
             mask="99/99/9999"
             value={date}
             onChange={(e) => setDate(e.target.value)}
+            required
           />
         </div>
       </div>
@@ -133,6 +199,7 @@ function SalesForm({ sales, users, createSale, updateUserData }) {
             placeholder="Porcentagem de cashback"
             value={cashbackPercentage}
             onChange={(e) => setCashbackPercentage(e)}
+            required
           />
         </div>
       </div>
@@ -149,11 +216,28 @@ function SalesForm({ sales, users, createSale, updateUserData }) {
           />
         </div>
       </div>
+      {status ? (
+        <div className="field">
+          <div className="control">
+            <div className="select is-large status-select">
+              <select
+                value={status}
+                className="select-item"
+                onChange={(e) => setStatus(e.target.value)}
+              >
+                <option>Em validação</option>
+                <option>Aprovado</option>
+                <option>Reprovado</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      ) : null}
       <button
         type="submit"
         className="button primary-button is-large is-fullwidth"
       >
-        Adicionar venda
+        {buttonText}
       </button>
     </form>
   );

@@ -20,3 +20,7 @@ input.numeric-input, .react-numeric-input {
 .currency-input-disabled:hover {
   cursor: not-allowed;
 }
+
+.is-large.status-select, .select-item {
+  width: 100%;
+}

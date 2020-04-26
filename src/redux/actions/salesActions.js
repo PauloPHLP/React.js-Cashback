@@ -14,9 +14,9 @@ const updateSale = (newSaleInfo) => ({
   updatedSale: newSaleInfo
 });
 
-const deleteSale = (saleCode) => ({
+const deleteSale = (saleId) => ({
   type: DELETE_SALE,
-  saleCode
+  saleId
 });
 
 export const createSale = (newSale) => {
@@ -31,14 +31,14 @@ export const getSales = () => {
   };
 };
 
-export const updateSaleDate = (updatedSale) => {
+export const updateSaleData = (updatedSale) => {
   return (dispatch) => {
     dispatch(updateSale(updatedSale));
   };
 };
 
-export const removeSale = (saleCode) => {
+export const removeSale = (saleId) => {
   return (dispatch) => {
-    dispatch(deleteSale(saleCode));
+    dispatch(deleteSale(saleId));
   };
 };

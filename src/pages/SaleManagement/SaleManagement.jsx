@@ -6,7 +6,7 @@ import SalesForm from '../../components/Sales/SalesForm/SalesForm';
 import './SaleManagement.css';
 
 const DESCRIPTION = {
-  title: 'Adicionar venda',
+  title: 'Gerenciar venda',
   description:
     'Coloque as informações da venda para ter acesso ao seu cashback.',
   goBackMessage: 'Voltar para lista de vendas',

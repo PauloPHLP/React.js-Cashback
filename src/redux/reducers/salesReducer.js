@@ -24,13 +24,13 @@ export const salesReducer = (state = initialState, action) => {
     case UPDATE_SALE:
       return {
         sales: state.sales.map((sale) =>
-          sale.code !== action.updatedSale.code ? sale : action.updatedSale
+          sale.id !== action.updatedSale.id ? sale : action.updatedSale
         )
       };
 
     case DELETE_SALE:
       return {
-        sales: state.sales.filter((sale) => sale.code !== action.saleCode)
+        sales: state.sales.filter((sale) => sale.id !== action.saleId)
       };
 
     default:
