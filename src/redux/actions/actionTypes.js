@@ -7,3 +7,4 @@ export const DELETE_SALE = 'DELETE_SALE';
 // Users actions.
 export const ADD_USER = 'ADD_USER';
 export const FETCH_USERS = 'FETCH_USERS';
+export const UPDATE_USER = 'UPDATE_USER';

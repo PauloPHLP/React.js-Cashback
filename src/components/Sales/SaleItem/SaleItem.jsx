@@ -25,7 +25,7 @@ function SaleItem({ sale }) {
 
   const columnItem = (key) => {
     return (
-      <div className="column is-full">
+      <div key={key} className="column is-full">
         <p className="item-title">{DEFAULT_TITLES[key]}:</p>
         <h1
           className={

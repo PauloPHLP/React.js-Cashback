@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './Footer.css';
 
-function Footer() {
+const mapStateToProps = (state) => {
+  return {
+    users: state.usersState.users
+  };
+};
+
+function Footer({ users }) {
+  const [currentCredit, setCurrentCredit] = useState(0);
+
+  useEffect(() => {
+    const userEmail = localStorage.getItem('loggedUserEmail');
+    const foundedUser = users.filter((user) => user.email === userEmail);
+
+    setCurrentCredit(foundedUser[0].credits || 0);
+  }, [users]);
+
   const handleLogOff = () => {
     localStorage.removeItem('loggedUser');
+    localStorage.removeItem('loggedUserEmail');
   };
 
   return (
@@ -27,7 +44,11 @@ function Footer() {
                 className="tertiary-button"
                 style={{ color: '#fff' }}
               >
-                Meus créditos - R$4.293,00
+                Meus créditos -{' '}
+                {Intl.NumberFormat('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL'
+                }).format(currentCredit)}
               </Link>
             </li>
             <li>
@@ -47,4 +68,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default connect(mapStateToProps)(Footer);

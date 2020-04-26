@@ -1,9 +1,11 @@
+/* eslint-disable no-alert */
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { getUsers } from '../../../redux/actions/usersActions';
+import { getUsers, updateUserData } from '../../../redux/actions/usersActions';
+import api from '../../../services/api';
 import './LogonHandler.css';
 
 const mapStateToProps = (state) => {
@@ -14,13 +16,43 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUsers: (args) => dispatch(getUsers(args))
+    getUsers: (args) => dispatch(getUsers(args)),
+    updateUserData: (args) => dispatch(updateUserData(args))
   };
 };
 
-function LogonHandler({ users, loginInfo }) {
+function LogonHandler({ users, loginInfo, updateUserData }) {
   const [errorField, setSetErrorField] = useState('error-message-hidden');
   const history = useHistory();
+
+  const finishLogin = (user) => {
+    setSetErrorField('error-message-hidden');
+    localStorage.setItem('loggedUser', user.name);
+    localStorage.setItem('loggedUserEmail', user.email);
+    history.push('/vendas');
+  };
+
+  async function updateUserCredits(user) {
+    try {
+      const formmatedCpf = user.cpf.replace(/[^\w\s]/gi, '');
+
+      const response = await api.get(`cashback?cpf=${formmatedCpf}`, {
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        },
+        withCredentials: false,
+        credentials: 'cross-origin'
+      });
+
+      const newUserInfo = user;
+      newUserInfo.credits = response.data.body.credit;
+
+      updateUserData(newUserInfo);
+      finishLogin(newUserInfo);
+    } catch {
+      alert('Erro no login. Por favor tente novamente!');
+    }
+  }
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -30,11 +62,8 @@ function LogonHandler({ users, loginInfo }) {
         user.email === loginInfo.email && user.password === loginInfo.password
     );
 
-    if (filteredUser.length) {
-      setSetErrorField('error-message-hidden');
-      localStorage.setItem('loggedUser', filteredUser[0].name);
-      history.push('/vendas');
-    } else setSetErrorField('error-message-show');
+    if (filteredUser.length) updateUserCredits(filteredUser[0]);
+    else setSetErrorField('error-message-show');
   };
 
   return (

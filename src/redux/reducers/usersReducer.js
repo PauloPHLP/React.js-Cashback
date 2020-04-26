@@ -1,4 +1,4 @@
-import { ADD_USER, FETCH_USERS } from '../actions/actionTypes';
+import { ADD_USER, FETCH_USERS, UPDATE_USER } from '../actions/actionTypes';
 
 const initialState = {
   users: [
@@ -6,7 +6,8 @@ const initialState = {
       name: 'Paulo Lima',
       cpf: '111.625.249-01',
       email: 'p.pereira@cinq.com.br',
-      password: 'phlp@1212'
+      password: 'phlp@1212',
+      credits: ''
     }
   ]
 };
@@ -21,6 +22,13 @@ export const usersReducer = (state = initialState, action) => {
     case FETCH_USERS:
       return {
         users: state.users
+      };
+
+    case UPDATE_USER:
+      return {
+        users: state.users.map((user) =>
+          user.code !== action.updatedUser.code ? user : action.updatedUser
+        )
       };
 
     default:

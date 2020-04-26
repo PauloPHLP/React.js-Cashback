@@ -1,13 +1,24 @@
-import { ADD_USER, FETCH_USERS } from './actionTypes';
-
-const fetchUsers = () => ({
-  type: FETCH_USERS
-});
+import { ADD_USER, FETCH_USERS, UPDATE_USER } from './actionTypes';
 
 const addUser = (newUser) => ({
   type: ADD_USER,
   newUser
 });
+
+const fetchUsers = () => ({
+  type: FETCH_USERS
+});
+
+const updateUser = (newUserInfo) => ({
+  type: UPDATE_USER,
+  updatedUser: newUserInfo
+});
+
+export const createUser = (newUser) => {
+  return (dispatch) => {
+    dispatch(addUser(newUser));
+  };
+};
 
 export const getUsers = () => {
   return (dispatch) => {
@@ -15,8 +26,8 @@ export const getUsers = () => {
   };
 };
 
-export const createUser = (newUser) => {
+export const updateUserData = (updatedUser) => {
   return (dispatch) => {
-    dispatch(addUser(newUser));
+    dispatch(updateUser(updatedUser));
   };
 };

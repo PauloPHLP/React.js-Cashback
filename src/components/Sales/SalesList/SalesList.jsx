@@ -22,7 +22,7 @@ function SalesList({ salesList }) {
               <h1 className="sales-page-title">Suas vendas</h1>
             </div>
             {salesList && isLoaded ? (
-              salesList.map((sale) => <SaleItem sale={sale} />)
+              salesList.map((sale) => <SaleItem key={sale.code} sale={sale} />)
             ) : (
               <div className="column is-full has-text-centered">
                 <Spinner />
