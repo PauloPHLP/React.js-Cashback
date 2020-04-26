@@ -23,6 +23,22 @@ function SaleItem({ sale }) {
     return 'green-status';
   };
 
+  const formatValues = (value, key) => {
+    switch (key) {
+      case 'cashbackValue':
+        return Intl.NumberFormat('pt-BR', {
+          style: 'currency',
+          currency: 'BRL'
+        }).format(value);
+
+      case 'cashbackPercentage':
+        return `${value}%`;
+
+      default:
+        return value;
+    }
+  };
+
   const columnItem = (key) => {
     return (
       <div key={key} className="column is-full">
@@ -34,7 +50,7 @@ function SaleItem({ sale }) {
               : 'item-value'
           }
         >
-          {sale[key]}
+          {formatValues(sale[key], key)}
         </h1>
       </div>
     );

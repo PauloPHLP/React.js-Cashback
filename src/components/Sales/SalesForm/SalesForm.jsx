@@ -1,29 +1,105 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import InputMask from 'react-input-mask';
 import NumericInput from 'react-numeric-input';
 import NumberFormat from 'react-number-format';
+import { createSale } from '../../../redux/actions/salesActions';
+import { updateUserData } from '../../../redux/actions/usersActions';
 import './SalesForm.css';
 
-function SalesForm() {
+const mapStateToProps = (state) => {
+  return {
+    sales: state.salesState.sales,
+    users: state.usersState.users
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createSale: (args) => dispatch(createSale(args)),
+    updateUserData: (args) => dispatch(updateUserData(args))
+  };
+};
+
+function SalesForm({ sales, users, createSale, updateUserData }) {
+  const [code, setCode] = useState();
   const [value, setValue] = useState();
-  const [percentage, setPercentage] = useState(0);
-  const [cashback, setCashback] = useState(0);
+  const [date, setDate] = useState();
+  const [cashbackPercentage, setCashbackPercentage] = useState(0);
+  const [cashbackValue, setCashbackValue] = useState(0);
+  const history = useHistory();
 
   useEffect(() => {
-    if (value && percentage) {
+    if (value && cashbackPercentage) {
       // Removing all special characters and characters from the value.
       const newValue = value.replace(/[^\w\s]/gi, '').replace('R', '');
 
-      setCashback((parseFloat(newValue) * (percentage / 100)).toFixed(2));
-    } else if (!value || percentage === 0 || !percentage) setCashback(0);
-  }, [value, percentage]);
+      setCashbackValue(
+        (parseFloat(newValue) * (cashbackPercentage / 100)).toFixed(2)
+      );
+    } else if (!value || cashbackPercentage === 0 || !cashbackPercentage)
+      setCashbackValue(0);
+  }, [value, cashbackPercentage]);
+
+  const updateUserCredits = () => {
+    const filteredUser = users.filter(
+      (user) => user.email === localStorage.getItem('loggedUserEmail')
+    )[0];
+
+    filteredUser.credits += parseFloat(cashbackValue);
+
+    updateUserData(filteredUser);
+  };
+
+  const validateCode = () => {
+    const foundedCode = sales.filter((sale) => sale.code === code).length > 0;
+    const codeField = document.getElementById('code');
+
+    if (foundedCode) {
+      codeField.classList.remove('valid');
+      codeField.classList.add('invalid');
+    } else {
+      codeField.classList.remove('invalid');
+      codeField.classList.add('valid');
+    }
+
+    return foundedCode;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!validateCode()) {
+      createSale({
+        code,
+        value,
+        date,
+        cashbackPercentage,
+        cashbackValue,
+        status: 'Em validação'
+      });
+
+      updateUserCredits();
+      history.push('/');
+    }
+  };
 
   return (
-    <div>
+    <form onSubmit={(e) => handleSubmit(e)}>
       <div className="field">
         <div className="control form-item">
-          <input className="input" type="text" placeholder="Código" />
+          <input
+            className="input"
+            type="text"
+            placeholder="Código"
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+          />
         </div>
+        <p id="code" className="valid">
+          Este código já existe!
+        </p>
       </div>
       <div className="field">
         <div className="control form-item">
@@ -39,7 +115,13 @@ function SalesForm() {
       </div>
       <div className="field">
         <div className="control form-item">
-          <InputMask className="input" placeholder="Data" mask="99/99/9999" />
+          <InputMask
+            className="input"
+            placeholder="Data"
+            mask="99/99/9999"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
         </div>
       </div>
       <div className="field">
@@ -49,8 +131,8 @@ function SalesForm() {
             min={0}
             max={100}
             placeholder="Porcentagem de cashback"
-            value={percentage}
-            onChange={(e) => setPercentage(e)}
+            value={cashbackPercentage}
+            onChange={(e) => setCashbackPercentage(e)}
           />
         </div>
       </div>
@@ -61,8 +143,8 @@ function SalesForm() {
             prefix="R$"
             className="currency-input-disabled"
             placeholder="Valor do cashback"
-            value={cashback}
-            onChange={(e) => setCashback(e.target.value)}
+            value={cashbackValue}
+            onChange={(e) => setCashbackValue(e.target.value)}
             disabled
           />
         </div>
@@ -73,8 +155,8 @@ function SalesForm() {
       >
         Adicionar venda
       </button>
-    </div>
+    </form>
   );
 }
 
-export default SalesForm;
+export default connect(mapStateToProps, mapDispatchToProps)(SalesForm);

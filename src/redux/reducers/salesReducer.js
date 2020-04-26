@@ -6,23 +6,26 @@ import {
 } from '../actions/actionTypes';
 
 const initialState = {
-  sales: [
-    {
-      code: '0005',
-      value: '6000',
-      date: '12/04/2020',
-      cashbackPercentage: '30',
-      cashbackValue: '1800',
-      status: 'Aprovado'
-    }
-  ]
+  sales: []
 };
 
 export const salesReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ADD_SALE:
+      return {
+        sales: (state.sales || []).concat([action.newSale])
+      };
+
     case FETCH_SALES:
       return {
         sales: state.sales
+      };
+
+    case UPDATE_SALE:
+      return {
+        sales: state.sales.map((sale) =>
+          sale.code !== action.updatedSale.code ? sale : action.updatedSale
+        )
       };
 
     case DELETE_SALE:

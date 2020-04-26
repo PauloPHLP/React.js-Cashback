@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { removeSale } from '../../redux/actions/salesActions';
+import { updateUserData } from '../../redux/actions/usersActions';
 import './Modal.css';
 
 export const openModal = () => {
@@ -15,13 +16,15 @@ export const closeModal = () => {
 
 const mapStateToProps = (state) => {
   return {
-    sales: state.salesState.sales
+    sales: state.salesState.sales,
+    users: state.usersState.users
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    removeSale: (args) => dispatch(removeSale(args))
+    removeSale: (args) => dispatch(removeSale(args)),
+    updateUserData: (args) => dispatch(updateUserData(args))
   };
 };
 
@@ -32,10 +35,27 @@ function Modal({
   cancelButton,
   saleCode,
   sales,
-  removeSale
+  users,
+  removeSale,
+  updateUserData
 }) {
+  const updateUserCredits = () => {
+    const saleCashbackValue = sales.filter((sale) => sale.code === saleCode)[0]
+      .cashbackValue;
+    const currentUser = users.filter(
+      (user) => user.email === localStorage.getItem('loggedUserEmail')
+    )[0];
+
+    currentUser.credits -= saleCashbackValue;
+    // Prevent negative values.
+    currentUser.credits = currentUser.credits > 0 ? currentUser.credits : 0;
+
+    updateUserData(currentUser);
+  };
+
   const handleDelete = () => {
     removeSale(saleCode);
+    updateUserCredits();
   };
 
   return (
