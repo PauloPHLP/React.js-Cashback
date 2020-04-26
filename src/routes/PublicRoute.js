@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const PublicRoute = ({ component: Component, restricted, ...rest }) => {
   return (
@@ -14,6 +15,11 @@ const PublicRoute = ({ component: Component, restricted, ...rest }) => {
       }
     />
   );
+};
+
+PublicRoute.propTypes = {
+  component: PropTypes.elementType.isRequired,
+  restricted: PropTypes.bool.isRequired
 };
 
 export default PublicRoute;

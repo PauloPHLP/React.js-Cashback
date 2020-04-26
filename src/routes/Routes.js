@@ -1,6 +1,7 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Redirect } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';
+import PropTypes from 'prop-types';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import Logon from '../pages/Logon/Logon';
@@ -28,6 +29,7 @@ function Routes() {
           <PrivateRoute path="/gerenciar" component={SaleManagement} />
           <PublicRoute
             path="*"
+            restricted={false}
             component={(props) => (
               <Redirect to={{ pathname: '/', search: props.location.search }} />
             )}
@@ -37,5 +39,13 @@ function Routes() {
     </BrowserRouter>
   );
 }
+
+Routes.defaultProps = {
+  location: () => {}
+};
+
+Routes.propTypes = {
+  location: PropTypes.func
+};
 
 export default Routes;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { mainFormPropType, defaultProps } from './types';
 import './MainForm.css';
 
 function MainForm({ form: Form }) {
@@ -8,5 +9,8 @@ function MainForm({ form: Form }) {
     </div>
   );
 }
+
+MainForm.propTypes = mainFormPropType;
+MainForm.defaultProps = defaultProps;
 
 export default MainForm;

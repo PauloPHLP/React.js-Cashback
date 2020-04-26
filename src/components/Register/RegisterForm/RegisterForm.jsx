@@ -1,8 +1,10 @@
+/* eslint-disable no-shadow */
 /* eslint-disable no-unused-expressions */
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import InputMask from 'react-input-mask';
+import { registerFormPropType, defaultProps } from './types';
 import { createUser } from '../../../redux/actions/usersActions';
 import './RegisterForm.css';
 
@@ -133,5 +135,8 @@ function RegisterForm({ users, createUser }) {
     </form>
   );
 }
+
+RegisterForm.propTypes = registerFormPropType;
+RegisterForm.defaultProps = defaultProps;
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm);

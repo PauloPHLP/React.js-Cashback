@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { footerPropType, defaultProps } from './types';
 import './Footer.css';
 
 const mapStateToProps = (state) => {
@@ -67,5 +68,8 @@ function Footer({ users }) {
     </div>
   );
 }
+
+Footer.propTypes = footerPropType;
+Footer.defaultProps = defaultProps;
 
 export default connect(mapStateToProps)(Footer);

@@ -1,9 +1,11 @@
+/* eslint-disable no-shadow */
 import React from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Modal, { openModal } from '../../Modal/Modal';
 import { removeSale } from '../../../redux/actions/salesActions';
 import { updateUserData } from '../../../redux/actions/usersActions';
+import { saleItemHandlerPropType, defaultProps } from './types';
 import './SaleItemHandler.css';
 
 const mapStateToProps = (state) => {
@@ -30,8 +32,9 @@ function SaleItemHandler({
   const history = useHistory();
 
   const updateUserCredits = () => {
-    const saleCashbackValue = sales.filter((sale) => sale.code === selectedSale.code)[0]
-      .cashbackValue;
+    const saleCashbackValue = sales.filter(
+      (sale) => sale.code === selectedSale.code
+    )[0].cashbackValue;
     const currentUser = users.filter(
       (user) => user.email === localStorage.getItem('loggedUserEmail')
     )[0];
@@ -90,5 +93,8 @@ function SaleItemHandler({
     </div>
   );
 }
+
+SaleItemHandler.propTypes = saleItemHandlerPropType;
+SaleItemHandler.defaultProps = defaultProps;
 
 export default connect(mapStateToProps, mapDispatchToProps)(SaleItemHandler);

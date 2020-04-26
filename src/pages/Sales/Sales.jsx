@@ -1,6 +1,8 @@
+/* eslint-disable no-shadow */
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getSales } from '../../redux/actions/salesActions';
+import { salesPropType, defaultProps } from './types';
 import Navbar from '../../components/Navbar/Navbar';
 import SalesList from '../../components/Sales/SalesList/SalesList';
 import Footer from '../../components/Footer/Footer';
@@ -21,7 +23,7 @@ const mapDispatchToProps = (dispatch) => {
 function Sales({ sales, getSales }) {
   useEffect(() => {
     getSales();
-  }, []);
+  }, [getSales]);
 
   return (
     <section className="hero is-fullheight">
@@ -31,5 +33,8 @@ function Sales({ sales, getSales }) {
     </section>
   );
 }
+
+Sales.propTypes = salesPropType;
+Sales.defaultProps = defaultProps;
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sales);

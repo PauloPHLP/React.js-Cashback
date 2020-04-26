@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { salesListPropType, defaultProps } from './types';
 import Spinner from '../../Spinner/Spinner';
 import SaleItem from '../SaleItem/SaleItem';
 import './SalesList.css';
@@ -34,5 +35,8 @@ function SalesList({ salesList }) {
     </div>
   );
 }
+
+SalesList.propTypes = salesListPropType;
+SalesList.defaultProps = defaultProps;
 
 export default SalesList;

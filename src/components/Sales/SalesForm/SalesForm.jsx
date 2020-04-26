@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -5,6 +6,7 @@ import InputMask from 'react-input-mask';
 import nextId from 'react-id-generator';
 import NumericInput from 'react-numeric-input';
 import NumberFormat from 'react-number-format';
+import { salesFormPropType, defaultProps } from './types';
 import {
   createSale,
   updateSaleData
@@ -35,9 +37,9 @@ function SalesForm({
   updateUserData
 }) {
   const [id, setId] = useState();
-  const [code, setCode] = useState();
-  const [value, setValue] = useState();
-  const [date, setDate] = useState();
+  const [code, setCode] = useState('');
+  const [value, setValue] = useState('');
+  const [date, setDate] = useState('');
   const [cashbackPercentage, setCashbackPercentage] = useState(0);
   const [initialCashbackValue, setInitialCashbackValue] = useState(null);
   const [cashbackValue, setCashbackValue] = useState(0);
@@ -133,7 +135,7 @@ function SalesForm({
   // Checking if is edit mode.
   useEffect(() => {
     if (history.location.state) setEditMode(history.location.state.toEdit);
-  }, []);
+  }, [history.location.state]);
 
   // Formating and calculating cashback value and percentage every time that the values are updated.
   useEffect(() => {
@@ -242,5 +244,8 @@ function SalesForm({
     </form>
   );
 }
+
+SalesForm.propTypes = salesFormPropType;
+SalesForm.defaultProps = defaultProps;
 
 export default connect(mapStateToProps, mapDispatchToProps)(SalesForm);

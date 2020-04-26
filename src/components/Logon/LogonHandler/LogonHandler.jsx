@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable no-alert */
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
@@ -5,6 +6,7 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { getUsers, updateUserData } from '../../../redux/actions/usersActions';
+import { logonHandlerPropType, defaultProps } from './types';
 import api from '../../../services/api';
 import './LogonHandler.css';
 
@@ -85,5 +87,8 @@ function LogonHandler({ users, loginInfo, updateUserData }) {
     </div>
   );
 }
+
+LogonHandler.propTypes = logonHandlerPropType;
+LogonHandler.defaultProps = defaultProps;
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogonHandler);

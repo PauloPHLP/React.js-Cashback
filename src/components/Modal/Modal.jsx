@@ -1,4 +1,5 @@
 import React from 'react';
+import { modalPropType, defaultProps } from './types';
 import './Modal.css';
 
 export const openModal = (modalId) => {
@@ -53,5 +54,8 @@ function Modal({
     </div>
   );
 }
+
+Modal.propTypes = modalPropType;
+Modal.defaultProps = defaultProps;
 
 export default Modal;

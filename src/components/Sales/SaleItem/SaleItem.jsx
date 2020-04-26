@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { saleItemPropType, defaultProps } from './types';
 import SaleItemHandler from '../SaleItemHandler/SaleItemHandler';
 import './SaleItem.css';
 
@@ -65,5 +66,8 @@ function SaleItem({ sale }) {
     </div>
   );
 }
+
+SaleItem.propTypes = saleItemPropType;
+SaleItem.defaultProps = defaultProps;
 
 export default SaleItem;
