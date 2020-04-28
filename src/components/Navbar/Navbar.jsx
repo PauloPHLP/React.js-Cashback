@@ -13,7 +13,7 @@ function Navbar() {
               <img src={logo} alt="O Boticário logo." />
             </Link>
             <p className="greeting-message">
-              Seja bem-vindx, {localStorage.getItem('loggedUser')}!
+              Seja bem-vindo(a), {localStorage.getItem('loggedUser')}!
             </p>
           </div>
         </div>

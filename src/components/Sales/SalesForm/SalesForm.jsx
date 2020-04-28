@@ -84,7 +84,8 @@ function SalesForm({
       filteredUser.credits =
         filteredUser.credits - initialCashbackValue + parseFloat(cashbackValue);
     else
-      filteredUser.credits = initialCashbackValue + parseFloat(cashbackValue) + 1;
+      filteredUser.credits =
+        initialCashbackValue + parseFloat(cashbackValue) + 1;
 
     updateUserData(filteredUser);
   };
