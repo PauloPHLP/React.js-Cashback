@@ -40,13 +40,7 @@ function LogonHandler({ users, loginInfo, updateUserData }) {
     try {
       const formmatedCpf = user.cpf.replace(/[^\w\s]/gi, '');
 
-      const response = await api.get(`cashback?cpf=${formmatedCpf}`, {
-        headers: {
-          'Access-Control-Allow-Origin': '*'
-        },
-        withCredentials: false,
-        credentials: 'cross-origin'
-      });
+      const response = await api.get(`cashback?cpf=${formmatedCpf}`, {});
 
       const newUserInfo = user;
       newUserInfo.credits = response.data.body.credit;

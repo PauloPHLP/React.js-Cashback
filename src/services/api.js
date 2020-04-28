@@ -7,14 +7,4 @@ const api = axios.create({
   baseURL: CASHBACK_API_URL
 });
 
-api.interceptors.request.use(
-  (config) => {
-    config.headers.Pragma = 'no-cache';
-    config.headers['Access-Control-Allow-Origin'] = '*';
-
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
-
 export default api;
