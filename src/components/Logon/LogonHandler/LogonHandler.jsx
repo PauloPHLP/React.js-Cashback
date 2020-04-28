@@ -49,7 +49,12 @@ function LogonHandler({ users, loginInfo, updateUserData }) {
       finishLogin(newUserInfo);
     } catch (err) {
       const newUserInfo = user;
-      newUserInfo.credits = 'Saldo anterior indisponível no momento.';
+      newUserInfo.credits = -1;
+
+      localStorage.setItem(
+        'cashBackErrorMessage',
+        'Saldo anterior indisponível no momento.'
+      );
 
       updateUserData(newUserInfo);
       finishLogin(newUserInfo);

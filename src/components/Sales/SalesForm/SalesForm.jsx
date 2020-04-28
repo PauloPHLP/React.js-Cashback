@@ -68,7 +68,7 @@ function SalesForm({
   const updateUserCredits = () => {
     const filteredUser = getCurrentUser();
 
-    if (typeof filteredUser.credits === 'number')
+    if (filteredUser.credits !== -1)
       filteredUser.credits += parseFloat(cashbackValue);
     else {
       filteredUser.credits = parseFloat(cashbackValue);
@@ -80,11 +80,11 @@ function SalesForm({
   const updateUserCreditsEditMode = () => {
     const filteredUser = getCurrentUser();
 
-    if (typeof filteredUser.credits === 'number')
+    if (filteredUser.credits !== -1)
       filteredUser.credits =
         filteredUser.credits - initialCashbackValue + parseFloat(cashbackValue);
     else
-      filteredUser.credits = initialCashbackValue + parseFloat(cashbackValue);
+      filteredUser.credits = initialCashbackValue + parseFloat(cashbackValue) + 1;
 
     updateUserData(filteredUser);
   };

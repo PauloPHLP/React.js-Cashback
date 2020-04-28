@@ -46,12 +46,12 @@ function Footer({ users }) {
                 style={{ color: '#fff' }}
               >
                 Meus créditos -{' '}
-                {typeof currentCredit === 'number'
+                {currentCredit !== -1
                   ? Intl.NumberFormat('pt-BR', {
                       style: 'currency',
                       currency: 'BRL'
                     }).format(currentCredit)
-                  : currentCredit}
+                  : localStorage.getItem('cashBackErrorMessage')}
               </Link>
             </li>
             <li>
