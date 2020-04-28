@@ -47,8 +47,8 @@ function LogonHandler({ users, loginInfo, updateUserData }) {
 
       updateUserData(newUserInfo);
       finishLogin(newUserInfo);
-    } catch {
-      alert('Erro no login. Por favor tente novamente!');
+    } catch (err) {
+      alert(err);
     }
   }
 
