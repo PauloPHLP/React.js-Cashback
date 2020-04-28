@@ -39,6 +39,8 @@ function SaleItemHandler({
       (user) => user.email === localStorage.getItem('loggedUserEmail')
     )[0];
 
+    if (typeof currentUser.credits === 'string') currentUser.credits = 0;
+
     currentUser.credits -= saleCashbackValue;
     // Preventing negative values.
     currentUser.credits = currentUser.credits > 0 ? currentUser.credits : 0;

@@ -48,7 +48,11 @@ function LogonHandler({ users, loginInfo, updateUserData }) {
       updateUserData(newUserInfo);
       finishLogin(newUserInfo);
     } catch (err) {
-      alert(err);
+      const newUserInfo = user;
+      newUserInfo.credits = 'Saldo anterior indisponível no momento.';
+
+      updateUserData(newUserInfo);
+      finishLogin(newUserInfo);
     }
   }
 

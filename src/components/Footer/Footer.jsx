@@ -46,10 +46,12 @@ function Footer({ users }) {
                 style={{ color: '#fff' }}
               >
                 Meus créditos -{' '}
-                {Intl.NumberFormat('pt-BR', {
-                  style: 'currency',
-                  currency: 'BRL'
-                }).format(currentCredit)}
+                {typeof currentCredit === 'number'
+                  ? Intl.NumberFormat('pt-BR', {
+                      style: 'currency',
+                      currency: 'BRL'
+                    }).format(currentCredit)
+                  : currentCredit}
               </Link>
             </li>
             <li>

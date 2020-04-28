@@ -68,15 +68,23 @@ function SalesForm({
   const updateUserCredits = () => {
     const filteredUser = getCurrentUser();
 
-    filteredUser.credits += parseFloat(cashbackValue);
+    if (typeof filteredUser.credits === 'number')
+      filteredUser.credits += parseFloat(cashbackValue);
+    else {
+      filteredUser.credits = parseFloat(cashbackValue);
+    }
 
     updateUserData(filteredUser);
   };
 
   const updateUserCreditsEditMode = () => {
     const filteredUser = getCurrentUser();
-    filteredUser.credits =
-      filteredUser.credits - initialCashbackValue + parseFloat(cashbackValue);
+
+    if (typeof filteredUser.credits === 'number')
+      filteredUser.credits =
+        filteredUser.credits - initialCashbackValue + parseFloat(cashbackValue);
+    else
+      filteredUser.credits = initialCashbackValue + parseFloat(cashbackValue);
 
     updateUserData(filteredUser);
   };
