@@ -119,7 +119,7 @@ function RegisterForm({ users, createUser }) {
           <input
             className="input"
             type="Password"
-            placeholder="Password"
+            placeholder="Senha"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
